@@ -23,8 +23,8 @@ data Process : {n m : ℕ} (Δ Γ : TypeContext n) (η : VariableBindings n m) �
         → Process ((x , dual τ) ∷ (y , τ) ∷ []) Γ η
     par : Process Δ₁ Γ η 
         → Process Δ₂ Γ η
-        → {{Disjoint Δ₁ Δ₂}}
-        → Process (join Δ₁ Δ₂) Γ η
+        → {{Disjoint Δ₁ Δ₂}} → {{join Δ₁ Δ₂ ≡ Δ}}
+        → Process Δ Γ η
     cut : (x : Session)
         → Process ((x , τ) ∷ Δ₁) Γ η
         → Process ((x , dual τ) ∷ Δ₂) Γ η
